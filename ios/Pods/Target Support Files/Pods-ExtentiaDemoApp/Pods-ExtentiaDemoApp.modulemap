@@ -1,0 +1,6 @@
+module Pods_ExtentiaDemoApp {
+  umbrella header "Pods-ExtentiaDemoApp-umbrella.h"
+
+  export *
+  module * { export * }
+}
