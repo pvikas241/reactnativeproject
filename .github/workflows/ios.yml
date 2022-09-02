@@ -1,0 +1,47 @@
+name: IOS build
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    name: IOS Build
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        
+      - name: Set up Node.js 12.16.1
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.16.1
+          
+      - name: Install dependencies
+        run: npm install --legacy-peer-deps
+        
+      - name: Install pod dependencies
+        run: |
+          cd ios && pod install 
+      
+
+
+      - name: Select Xcode
+        run: sudo xcode-select -switch /Applications/Xcode_13.2.1.app
+        
+      - name: Xcode Version
+        run: /usr/bin/xcodebuild -version
+        
+      - name: Create build folder
+        run: |
+         mkdir -p build && mkdir -p staging 
+        
+      - name: Build Archive
+        run: |
+          xcodebuild -workspace 'ios/ArtApp.xcworkspace' -scheme 'ArtApp' -configuration 'debug' \
+          -archivePath 'build/ArtApp.xcarchive' -allowProvisioningUpdates PROVISIONING_STYLE="Manual" \
+          CODE_SIGNING_ALLOWED="NO"
+        
