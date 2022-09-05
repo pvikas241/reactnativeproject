@@ -21,13 +21,12 @@ jobs:
           node-version: 12.16.1
           
       - name: Install dependencies
-        run: npm install --legacy-peer-deps
+        run: npm install 
         
       - name: Install pod dependencies
         run: |
           cd ios && pod install 
       
-
 
       - name: Select Xcode
         run: sudo xcode-select -switch /Applications/Xcode_13.2.1.app
