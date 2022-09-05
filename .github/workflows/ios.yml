@@ -42,6 +42,6 @@ jobs:
       - name: Build Archive
         run: |
           xcodebuild -workspace 'ios/ExtentiaDemoApp.xcworkspace' -scheme 'ExtentiaDemoApp' -configuration 'debug' \
-          -archivePath 'build/ExtentiaDemoApp.xcarchive' -allowProvisioningUpdates PROVISIONING_STYLE="Manual" \
+          archive -archivePath 'build/ExtentiaDemoApp.xcarchive' -allowProvisioningUpdates PROVISIONING_STYLE="Manual" \
           CODE_SIGNING_ALLOWED="NO"
         
