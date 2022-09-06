@@ -15,32 +15,45 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         
-      - name: Set up Node.js 14.x
-        uses: actions/setup-node@v1
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+        
+      - name: Restore node_modules from cache
+        uses: actions/cache@v2
+        id: yarn-cache
         with:
-          node-version: 14.x
-          
-      - name: Install dependencies
-        run: npm install --legacy-peer-deps
-        
-      - name: Install pod dependencies
-        run: |
-          cd ios && pod install 
-      
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
 
-      - name: Select Xcode
-        run: sudo xcode-select -p
-        
-      - name: Xcode Version
-        run: /usr/bin/xcodebuild -version
-        
-      - name: Create build folder
-        run: |
-         mkdir -p build && mkdir -p staging 
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile --network-timeout 300000
+
+      - name: Setup Ruby (bundle)
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.6
+          bundler-cache: true
+
+      - name: Restore Pods cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            ios/Pods
+            ~/Library/Caches/CocoaPods
+            ~/.cocoapods
+          key: ${{ runner.os }}-pods-${{ hashFiles('ios/Podfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-pods-
+
+      - name: Install Pods
+        run: cd ios && pod install --repo-update && cd ..
         
       - name: Build Archive
         run: |
           xcodebuild -workspace ios/ExtentiaDemoApp.xcworkspace -scheme ExtentiaDemoApp -configuration debug \
           archive -archivePath build/ExtentiaDemoApp.xcarchive -allowProvisioningUpdates PROVISIONING_STYLE="Manual" \
-          CODE_SIGNING_ALLOWED="NO"
+          CODE_SIGNING_ALLOWED="NO"    
         
