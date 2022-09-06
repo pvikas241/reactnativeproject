@@ -21,7 +21,7 @@ jobs:
           node-version: 14.x
           
       - name: Install dependencies
-        run: npm install --legacy-peer-deps
+        run: npm ci
         
       - name: Install pod dependencies
         run: |
@@ -29,7 +29,7 @@ jobs:
       
 
       - name: Select Xcode
-        run: sudo xcode-select -switch /Applications/Xcode_13.2.1.app
+        run: sudo xcode-select -p
         
       - name: Xcode Version
         run: /usr/bin/xcodebuild -version
@@ -40,7 +40,7 @@ jobs:
         
       - name: Build Archive
         run: |
-          xcodebuild -workspace ios/ExtentiaDemoApp.xcworkspace -scheme ExtentiaDemoApp -configuration debug \
+          "xcodebuild -workspace ios/ExtentiaDemoApp.xcworkspace -scheme ExtentiaDemoApp -configuration debug \
           archive -archivePath build/ExtentiaDemoApp.xcarchive -allowProvisioningUpdates PROVISIONING_STYLE="Manual" \
-          CODE_SIGNING_ALLOWED="NO"
+          CODE_SIGNING_ALLOWED=NO"
         
