@@ -57,7 +57,7 @@ jobs:
         appName: Athena-Dev/Athena - Android
         token: ${{ env.APP_CENTER_TOKEN }}
         group: Athena - Android
-        file: android/app/build/outputs/apk/release/extentiademoapp.apk
+        file: android/app/build/outputs/apk/release/app-release.apk
         notifyTesters: true
         debug: false       
        
