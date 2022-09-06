@@ -54,9 +54,9 @@ jobs:
     - name: App Center
       uses: wzieba/AppCenter-Github-Action@v1.3.3
       with: 
-        appName: Athena-Dev/Athena - Android
+        appName: Athena-Dev/Athena-Android
         token: ${{ env.APP_CENTER_TOKEN }}
-        group: Athena - Android
+        group: Athena-Android
         file: android/app/build/outputs/apk/release/app-release.apk
         notifyTesters: true
         debug: false       
