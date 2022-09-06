@@ -49,7 +49,9 @@ jobs:
       with: 
         name: extentiademoapp.apk
         path: android/app/build/outputs/apk/release/
-        
+    - name: to test
+      run: ls -l android/app/build/outputs/apk/release && pwd
+      
     - name: App Center
       uses: wzieba/AppCenter-Github-Action@v1.3.3
       with: 
