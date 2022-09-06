@@ -21,7 +21,7 @@ jobs:
           node-version: 12.16.1
           
       - name: Install dependencies
-        run: npm i 
+        run: npm install 
         
       - name: Install pod dependencies
         run: |
@@ -40,7 +40,7 @@ jobs:
         
       - name: Build Archive
         run: |
-          xcodebuild -workspace 'ios/ExtentiaDemoApp.xcworkspace' -scheme 'ExtentiaDemoApp' -configuration 'debug' \
-          archive -archivePath 'build/ExtentiaDemoApp.xcarchive' -allowProvisioningUpdates PROVISIONING_STYLE="Manual" \
+          xcodebuild -workspace ios/ExtentiaDemoApp.xcworkspace -scheme ExtentiaDemoApp -configuration debug \
+          archive -archivePath build/ExtentiaDemoApp.xcarchive -allowProvisioningUpdates PROVISIONING_STYLE="Manual" \
           CODE_SIGNING_ALLOWED="NO"
         
