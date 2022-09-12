@@ -47,9 +47,16 @@ jobs:
       - name: Install Pods
         run: cd ios && pod install --repo-update && cd ..
         
-      - name: Build Archive
-        run: |
-          xcodebuild -workspace ios/ExtentiaDemoApp.xcworkspace -scheme ExtentiaDemoApp -configuration debug \
-          archive -archivePath build/ExtentiaDemoApp.xcarchive -allowProvisioningUpdates PROVISIONING_STYLE="Manual" \
-          CODE_SIGNING_ALLOWED="NO"    
+      - name: iOS Build Action
+  # You may pin to the exact commit or the version.
+  # uses: yukiarrr/ios-build-action@3d8ff63d40bce5dfd0ff8d1dda6ce543bf4c605a
+        uses: yukiarrr/ios-build-action@v1.5.0
+        with:
+          project-path: ios/ExtentiaDemoApp.xcodeproj
+          team-id: GXU7L5MK9T
+          scheme: ExtentiaDemoApp
+        
+      
+ 
+          
         
