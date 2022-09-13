@@ -47,13 +47,21 @@ jobs:
       - name: Install Pods
         run: cd ios && pod install --repo-update && cd ..
         
-      - name: iOS Build Action
-  # You may pin to the exact commit or the version.
-  # uses: yukiarrr/ios-build-action@3d8ff63d40bce5dfd0ff8d1dda6ce543bf4c605a
-        uses: yukiarrr/ios-build-action@v1.5.0
+      - name: Know permission
+        run: cd ios && ls -la
+
+      - name: Decrypt large secret
+        run: cd ios && ./decrypt_provision.sh       
+        
+      - name: Build IOS App
+        uses: yukiarrr/ios-build-action@v1.4.0
         with:
           project-path: ios/ExtentiaDemoApp.xcodeproj
-          team-id: GXU7L5MK9T
+          p12-base64: ${{ secrets.IOS_P12_BASE64 }}
+          mobileprovision-base64: ios/MYCEA_Development_Profile.mobileprovision
+          code-signing-identity: 'iPhone Distribution'
+          team-id: ${{ secrets.IOS_TEAM_ID }}
+          workspace-path: ios/ExtentiaDemoApp.xcworkspace
           scheme: ExtentiaDemoApp
         
       
