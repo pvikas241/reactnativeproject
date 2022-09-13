@@ -49,6 +49,12 @@ jobs:
         
       - name: Know permission
         run: cd ios && ls -la
+        
+      - name: change permission of file
+        run: cd ios && sudo chmod +x decrypt_provision.sh
+        
+      - name: Know permission of a file
+        run: cd ios && ls -la  
 
       - name: Decrypt large secret
         run: cd ios && ./decrypt_provision.sh       
