@@ -54,8 +54,11 @@ jobs:
         run: cd ios && sudo chmod +x decrypt_provision.sh
         
       - name: Know permission of a file
-        run: cd ios && ls -la  
-
+        run: cd ios && ls -la 
+        
+      - name: Install gpg
+        run: brew install gnupg
+        
       - name: Decrypt large secret
         run: cd ios && ./decrypt_provision.sh       
         
@@ -64,7 +67,7 @@ jobs:
         with:
           project-path: ios/ExtentiaDemoApp.xcodeproj
           p12-base64: ${{ secrets.IOS_P12_BASE64 }}
-          mobileprovision-base64: ios/provisonalData.txt
+          mobileprovision-base64: ios/MYCEA_Development_Profile.mobileprovision.mobileprovision
           code-signing-identity: 'iPhone Distribution'
           team-id: ${{ secrets.IOS_TEAM_ID }}
           workspace-path: ios/ExtentiaDemoApp.xcworkspace
