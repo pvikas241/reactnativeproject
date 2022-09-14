@@ -49,15 +49,24 @@ jobs:
       - name: find dycripted file
         run: cd ios/secrets && ls -la      
         
-      - name: Build IOS App
-        uses: yukiarrr/ios-build-action@v1.4.0
-        with:
-          project-path: ios/ExtentiaDemoApp.xcodeproj
-          p12-base64: ${{ secrets.IOS_P12_BASE64 }}
-          mobileprovision-base64: ios/secrets/MYCEA_Development_Profile.mobileprovision
-          team-id: ${{ secrets.IOS_TEAM_ID }}
-          workspace-path: ios/ExtentiaDemoApp.xcworkspace
-          scheme: ExtentiaDemoApp
+      #- name: Build IOS App
+      #  uses: yukiarrr/ios-build-action@v1.4.0
+      #  with:
+      #    project-path: ios/ExtentiaDemoApp.xcodeproj
+      #    p12-base64: ${{ secrets.IOS_P12_BASE64 }}
+      #    mobileprovision-base64: ios/secrets/MYCEA_Development_Profile.mobileprovision
+      #    team-id: ${{ secrets.IOS_TEAM_ID }}
+      #    workspace-path: ios/ExtentiaDemoApp.xcworkspace
+      #    scheme: ExtentiaDemoApp
+     
+      - name: Build Archive 
+        run: |
+           xcodebuild -workspace ExtentiaDemoApp.xcworkspace \
+                      -scheme ExtentiaDemoApp\ ios \
+                      -sdk iphoneos \
+                      -configuration AppStoreDistribution \
+                      -archivePath ios/build/ExtentiaDemoApp.xcarchive \
+                      clean archive | xcpretty
         
       
  
