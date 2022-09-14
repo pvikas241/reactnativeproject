@@ -62,7 +62,7 @@ jobs:
       - name: Build Archive 
         run: |
            xcodebuild -workspace ios/ExtentiaDemoApp.xcworkspace \
-                      -scheme ExtentiaDemoApp\ 
+                      -scheme ExtentiaDemoApp \ 
                       -sdk iphoneos \
                       -configuration AppStoreDistribution \
                       -archivePath ios/build/ExtentiaDemoApp.xcarchive \
