@@ -55,7 +55,6 @@ jobs:
           project-path: ios/ExtentiaDemoApp.xcodeproj
           p12-base64: ${{ secrets.IOS_P12_BASE64 }}
           mobileprovision-base64: ios/secrets/MYCEA_Development_Profile.mobileprovision
-          code-signing-identity: 'iPhone Distribution'
           team-id: ${{ secrets.IOS_TEAM_ID }}
           workspace-path: ios/ExtentiaDemoApp.xcworkspace
           scheme: ExtentiaDemoApp
