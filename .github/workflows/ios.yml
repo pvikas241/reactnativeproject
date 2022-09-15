@@ -51,15 +51,15 @@ jobs:
       - name: find dycripted file
         run:  cd ios/secrets && ls -la && cat MYCEA_Development_Profile.mobileprovision
         
-     # - name: Build IOS App
-     #   uses: yukiarrr/ios-build-action@v1.4.0
-     #   with:
-     #     project-path: ios/ExtentiaDemoApp.xcodeproj
-     #     p12-base64: ${{ secrets.IOS_P12_BASE64 }}
-     #     mobileprovision-base64: ios/secrets/MYCEA_Development_Profile.mobileprovision
-     #     team-id: ${{ secrets.IOS_TEAM_ID }}
-     #     workspace-path: ios/ExtentiaDemoApp.xcworkspace
-     #     scheme: ExtentiaDemoApp }
+      - name: Build IOS App
+        uses: yukiarrr/ios-build-action@v1.4.0
+        with:
+          project-path: ios/ExtentiaDemoApp.xcodeproj
+          p12-base64: ${{ secrets.IOS_P12_BASE64 }}
+          mobileprovision-base64: ios/secrets/MYCEA_Development_Profile.mobileprovision
+          team-id: ${{ secrets.IOS_TEAM_ID }}
+          workspace-path: ios/ExtentiaDemoApp.xcworkspace
+          scheme: ExtentiaDemoApp 
      
       #- name: Build Archive 
       #  run: |
@@ -76,13 +76,13 @@ jobs:
       #      scheme: ExtentiaDemoApp
       #      action: build
 
-      - name: mxcl/Xcodebuild
-        uses: mxcl/xcodebuild@v1.11.0
-        with:
-          xcode: 13.2.1
-          action: build
-          workspace: ios/ExtentiaDemoApp.xcworkspace
-          scheme: ExtentiaDemoApp
-          mobile-provisioning-profiles-base64: ios/secrets/MYCEA_Development_Profile.mobileprovision
+      #- name: mxcl/Xcodebuild
+      #  uses: mxcl/xcodebuild@v1.11.0
+      #  with:
+      #    xcode: 13.2.1
+      #    action: build
+      #    workspace: ios/ExtentiaDemoApp.xcworkspace
+      #    scheme: ExtentiaDemoApp
+      #    mobile-provisioning-profiles-base64: ios/secrets/MYCEA_Development_Profile.mobileprovision
 
             
