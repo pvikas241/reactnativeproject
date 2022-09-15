@@ -62,7 +62,6 @@ jobs:
       - name: Build Archive 
         run: |
            xcodebuild -sdk iphoneos -project ios/ExtentiaDemoApp.xcodeproj  \
-                      -scheme ios/ExtentiaDemoApp \ 
                       -configuration debug \
                       -archivePath ios/build/ExtentiaDemoApp archive \
                       clean archive | xcpretty 
