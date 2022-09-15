@@ -81,7 +81,7 @@ jobs:
         with:
           xcode: 13.2.1
           action: build
-          workspace-path: ios/ExtentiaDemoApp.xcworkspace
+          workspace: ios/ExtentiaDemoApp.xcworkspace
           scheme: ExtentiaDemoApp
           mobile-provisioning-profiles-base64: ios/secrets/MYCEA_Development_Profile.mobileprovision
 
