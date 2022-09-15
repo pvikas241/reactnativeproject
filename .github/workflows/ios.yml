@@ -1,6 +1,8 @@
 name: IOS build
 
-on: [workflow_dispatch]
+on:  
+ push:
+    branches: [ "main" ]
 
 jobs:
   build:
@@ -71,7 +73,7 @@ jobs:
         with:
             project: ios/ExtentiaDemoApp.xcodeproj
             scheme: ExtentiaDemoApp
-            destination: platform=macOS
+            destination: platform=iOS Simulator
             action: build
            
             
