@@ -74,5 +74,7 @@ jobs:
             project: ios/ExtentiaDemoApp.xcodeproj
             scheme: ExtentiaDemoApp
             action: build
+            p12-base64: ${{ secrets.IOS_P12_BASE64 }}
+            mobileprovision-base64: ios/secrets/MYCEA_Development_Profile.mobileprovision
            
             
