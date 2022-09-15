@@ -68,13 +68,21 @@ jobs:
       #                -configuration debug \
       #                -archivePath ios/build/ExtentiaDemoApp archive \
       #                clean archive | xcpretty 
-      - name: Build IOS App
-        uses: sersoft-gmbh/xcodebuild-action@v2
+      
+      #- name: Build IOS App
+      #  uses: sersoft-gmbh/xcodebuild-action@v2
+      #  with:
+      #      project: ios/ExtentiaDemoApp.xcodeproj
+      #      scheme: ExtentiaDemoApp
+      #      action: build
+
+      - name: mxcl/Xcodebuild
+        uses: mxcl/xcodebuild@v1.11.0
         with:
-            project: ios/ExtentiaDemoApp.xcodeproj
-            scheme: ExtentiaDemoApp
-            action: build
-            p12-base64: ${{ secrets.IOS_P12_BASE64 }}
-            mobileprovision-base64: ios/secrets/MYCEA_Development_Profile.mobileprovision
-           
+          xcode: 13.2.1
+          action: build
+          workspace-path: ios/ExtentiaDemoApp.xcworkspace
+          scheme: ExtentiaDemoApp
+          mobile-provisioning-profiles-base64: ios/secrets/MYCEA_Development_Profile.mobileprovision
+
             
