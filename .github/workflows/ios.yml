@@ -59,12 +59,19 @@ jobs:
      #     workspace-path: ios/ExtentiaDemoApp.xcworkspace
      #     scheme: ExtentiaDemoApp }
      
-      - name: Build Archive 
-        run: |
-           xcodebuild -sdk iphoneos -project ios/ExtentiaDemoApp.xcodeproj  \
-                      -configuration debug \
-                      -archivePath ios/build/ExtentiaDemoApp archive \
-                      clean archive | xcpretty 
-     
+      #- name: Build Archive 
+      #  run: |
+      #     xcodebuild -sdk iphoneos -project ios/ExtentiaDemoApp.xcodeproj  \
+      #                -scheme io/ExtentiaDemoApp \
+      #                -configuration debug \
+      #                -archivePath ios/build/ExtentiaDemoApp archive \
+      #                clean archive | xcpretty 
+      - name: Build IOS App
+        uses: sersoft-gmbh/xcodebuild-action@v2
+        with:
+            project: ios/ExtentiaDemoApp.xcodeproj
+            scheme: ios/ExtentiaDemoApp
+            destination: platform=macOS
+            action: build
            
             
