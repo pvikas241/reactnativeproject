@@ -61,6 +61,8 @@ jobs:
           workspace-path: ios/ExtentiaDemoApp.xcworkspace
           scheme: ExtentiaDemoApp 
      
+     
+     
       #- name: Build Archive 
       #  run: |
       #     xcodebuild -sdk iphoneos -project ios/ExtentiaDemoApp.xcodeproj  \
